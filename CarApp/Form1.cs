@@ -15,6 +15,7 @@ namespace CarApp
 {
     public partial class Form1 : Form
     {
+        Database dbObject = new Database();
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +30,9 @@ namespace CarApp
                 }
             else
                {
-
+                Car car = new Car(txtRegNr.Text, txtMake.Text, txtModel.Text, Convert.ToInt32(txtYear.Text), cbxForSale.Checked);
+                int result = dbObject.AddCarRow(car);
+                MessageBox.Show("Du har lagt till " + Convert.ToInt32(result) + " antal bilar");
                 ListViewItem item = CreateListViewItem(txtRegNr.Text, txtMake.Text, txtModel.Text, txtYear.Text, cbxForSale.Checked);
                 lsvCars.Items.Add(item);
                 ClearTextboxes();

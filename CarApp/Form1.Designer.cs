@@ -86,11 +86,11 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(60, 102);
+            this.btnSearch.Location = new System.Drawing.Point(36, 58);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 30);
+            this.btnSearch.Size = new System.Drawing.Size(138, 30);
             this.btnSearch.TabIndex = 12;
-            this.btnSearch.Text = "Sök";
+            this.btnSearch.Text = "Sök i bilregistret";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -108,7 +108,7 @@
             // 
             this.btnAdd.Location = new System.Drawing.Point(592, 101);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 30);
+            this.btnAdd.Size = new System.Drawing.Size(176, 31);
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Lägg Till";
             this.btnAdd.UseVisualStyleBackColor = true;
