@@ -33,6 +33,32 @@ namespace CarApp
             }
         }
 
+        public List<Car> GetAllRowsFromCar()
+        {
+            string qSelect = "SELECT * FROM car;";
+            List<Car> ListOfCars = new List<Car>();
+            
+            SQLiteCommand dbCommand = new SQLiteCommand(qSelect, dbConn);
+            OpenConnection();
+
+            SQLiteDataReader res = dbCommand.ExecuteReader();
+
+            if (res.HasRows)
+            {
+                while (res.Read())
+                {
+                    Car car = new Car(Convert.ToString(res["regNr"]), 
+                        Convert.ToString(res["make"]), 
+                        Convert.ToString(res["model"]),
+                        Convert.ToInt32(res["year"]), 
+                        Convert.ToBoolean(res["forSale"]));
+                    ListOfCars.Add(car);
+                }
+            }
+            CloseConnection();
+            return ListOfCars;
+        }
+
         public void CloseConnection()
         {
             if (dbConn.State != System.Data.ConnectionState.Closed)
@@ -58,6 +84,20 @@ namespace CarApp
             CloseConnection();
             return result;
 
+        }
+
+        public int RemoveCarRowByRegNr(string regNr)
+        {
+            string qDelete = "DELETE FROM car Where regNr = @regNr;";
+
+            SQLiteCommand dbCommand = new SQLiteCommand(qDelete, dbConn);
+            OpenConnection();
+
+            dbCommand.Parameters.AddWithValue(@"regNr", regNr);
+
+            int result = dbCommand.ExecuteNonQuery();
+            CloseConnection();
+            return result;
         }
     }
 }
